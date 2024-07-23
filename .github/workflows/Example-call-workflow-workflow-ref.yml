@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   call-remote-flow:
     uses: roelofvsr-org/test-oidc-workflow-ref/.github/workflows/Azure-OIDC-reusable-Example-reusable.yml@main
-    #secrets: inherit
+    secrets: inherit
 
   echo-message:
     runs-on: ubuntu-latest
