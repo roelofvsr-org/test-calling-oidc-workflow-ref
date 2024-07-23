@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: call-remote-flow # This ensures the echo runs after the call-read-secret job
     steps:
-      - name: Echo a message
+      - name: Echo a message2
         run: echo "The remote read-secret workflow has been called!"
         env:
           SUPERSECRET: ${{ secrets.SUPERSECRET }}
