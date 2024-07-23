@@ -1,0 +1,31 @@
+name: Example-call-workflow-workflow-ref
+
+on: workflow_dispatch
+
+jobs:
+  call-remote-flow:
+    uses: roelofvsr-org/test-oidc-workflow-ref/.github/workflows/Azure-OIDC-reusable-Example-reusable.yml@main
+    #secrets: inherit
+
+  echo-message:
+    runs-on: ubuntu-latest
+    needs: call-remote-flow # This ensures the echo runs after the call-read-secret job
+    steps:
+      - name: Echo a message
+        run: echo "The remote read-secret workflow has been called!"
+        env:
+          SUPERSECRET: ${{ secrets.SUPERSECRET }}
+
+  try-and-use-secret:
+    environment: "test-secret-protection"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Read Secret and var
+      run: |
+        echo "The secret is $SUPERSECRET"
+        echo "The simpelvar is $SIMPLEVAR"
+      env:
+        SUPERSECRET: ${{ secrets.SUPERSECRET }}
+        SIMPLEVAR: ${{ vars.SIMPLEVAR }}
+    
+    
