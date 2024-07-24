@@ -12,9 +12,7 @@ jobs:
     needs: call-remote-flow # This ensures the echo runs after the call-read-secret job
     steps:
       - name: Echo a message2
-        run: echo "The remote read-secret workflow has been called!"
-        env:
-          SUPERSECRET: ${{ secrets.SUPERSECRET }}
+        run: echo "The remote workflow has been called!"
 
   try-and-use-secret:
     environment: "test-secret-protection"
