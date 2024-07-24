@@ -13,17 +13,3 @@ jobs:
     steps:
       - name: Echo a message2
         run: echo "The remote workflow has been called!"
-
-  try-and-use-secret:
-    environment: "test-secret-protection"
-    runs-on: ubuntu-latest
-    steps:
-    - name: Read Secret and var
-      run: |
-        echo "The secret is $SUPERSECRET"
-        echo "The simpelvar is $SIMPLEVAR"
-      env:
-        SUPERSECRET: ${{ secrets.SUPERSECRET }}
-        SIMPLEVAR: ${{ vars.SIMPLEVAR }}
-    
-    
